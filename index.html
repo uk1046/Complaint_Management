@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Management System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        footer p {
+            margin: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 600px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            color: #666;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-container a {
+            text-decoration: none;
+        }
+
+        .btn-container button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-container button:hover {
+            background-color: #555;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Complaint Management System</h1>
+    </header>
+
+    <div class="container">
+        <h2>Welcome to Complaint Management System</h2>
+        <p>This system is designed to help you manage complaints effectively. Whether you're an administrator, a user, or a new visitor, we're here to assist you.</p>
+        
+        <div class="btn-container">
+            <a href="admin_login.php"><button>Admin Login</button></a>
+            <a href="signup.php" > <button>Sign Up</button></a>
+            <a href="login.php" > <button>Login</button></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Complaint Management System</p>
+    </footer>
+</body>
+</html>
