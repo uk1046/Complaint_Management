@@ -64,10 +64,13 @@ if ($result_users->num_rows > 0) {
     while ($row_users = $result_users->fetch_assoc()) {
         $userid = $row_users['id'];
         $complaints_table = "complaints_" . $userid;
-        $selectedDayRange = isset($_POST["dayrange"]) ? intval($_POST["dayrange"]) : 1000;
+        $selectedDayRange = isset($_POST["dayrange"]) ? intval($_POST["dayrange"]) : 10000;
+        $selectedStatus = isset($_POST["complaintstatus01"]) ? $_POST["complaintstatus01"] : "Pending";
+
+        
         // Construct SQL query with day range
         $interval = "-$selectedDayRange DAY";
-        $sql_complaints = "SELECT * FROM $complaints_table WHERE date >= DATE_SUB(NOW(), INTERVAL $selectedDayRange DAY)  ORDER BY date DESC, time DESC";
+        $sql_complaints = "SELECT * FROM $complaints_table WHERE date >= DATE_SUB(NOW(), INTERVAL $selectedDayRange DAY) AND status = '$selectedStatus' ORDER BY date DESC, time DESC";
         $result_complaints = $conn->query($sql_complaints);
         if ($result_complaints->num_rows > 0) {
             while ($row_complaints = $result_complaints->fetch_assoc()) {
@@ -369,6 +372,7 @@ usort($allComplaints, function ($a, $b) {
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-group2">
     <label for="dayrange">Filter :</label>
     <select name="dayrange" id="dayrange">
+        <option value="10000">All Comments</option>
         <option value="1">1 day</option>
         <option value="7">Last 7 days</option>
         <option value="30">Last 30 days</option>
@@ -376,9 +380,15 @@ usort($allComplaints, function ($a, $b) {
         <option value="180">Last 180 days</option>
         <option value="365">Last 365 days</option>
     </select>
-    
+    <select name="complaintstatus01" id="complaintstatus01">
+    <option value="Pending" <?php if(isset($_POST["complaintstatus01"]) && $_POST["complaintstatus01"] == "Pending") echo "selected"; ?>>Pending</option>
+    <option value="In Process" <?php if(isset($_POST["complaintstatus01"]) && $_POST["complaintstatus10"] == "In Process") echo "selected"; ?>>In Process</option>
+    <option value="Resolved" <?php if(isset($_POST["complaintstatus01"]) && $_POST["complaintstatus10"] == "Resolved") echo "selected"; ?>>Resolved</option>
+</select>
+
     <input type="submit" value="Apply Filter">
-</form> 
+</form>
+ 
     <div>
     <?php if (!empty($allComplaints)): ?>
         <ul>
